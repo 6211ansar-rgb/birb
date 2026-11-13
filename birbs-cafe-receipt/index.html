@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>birb's café receipt</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 28px 18px 34px;
+  background: #d8d3c9;
+  color: #25231f;
+  font-family: "Courier New", monospace;
+}
+main { width: min(100%, 430px); margin: 0 auto; }
+.receipt {
+  position: relative;
+  width: 250px;
+  min-height: 650px;
+  margin: 14px auto 34px;
+  padding: 30px 20px 36px;
+  background: repeating-linear-gradient(to bottom, #f5f0df 0 3px, #f2eddd 3px 4px);
+  box-shadow: 2px 5px 9px #49433755;
+  clip-path: polygon(0 0,100% 0,100% 98%,96% 99%,92% 98%,88% 100%,84% 98%,80% 99%,76% 97%,72% 99%,68% 98%,64% 100%,60% 98%,56% 99%,52% 97%,48% 99%,44% 98%,40% 100%,36% 98%,32% 99%,28% 97%,24% 99%,20% 98%,16% 100%,12% 98%,8% 99%,4% 97%,0 99%);
+  transform: rotate(-1deg);
+}
+.receipt::before {
+  content: "";
+  position: absolute;
+  width: 72px;
+  height: 42px;
+  right: 20px;
+  top: 17px;
+  border: 1px solid #9c755b;
+  border-radius: 50%;
+  opacity: .18;
+  transform: rotate(-18deg);
+}
+.receipt::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 28px solid #d8d3c9;
+  border-left: 28px solid transparent;
+  filter: drop-shadow(-1px 2px 1px #746b5a66);
+}
+.tape {
+  position: absolute;
+  top: 4px;
+  left: 86px;
+  width: 84px;
+  height: 22px;
+  background: #e9d38b99;
+  box-shadow: 0 1px 3px #51472f44;
+  transform: rotate(-4deg);
+}
+.leaf {
+  position: absolute;
+  z-index: 2;
+  top: 7px;
+  left: 116px;
+  width: 21px;
+  height: 10px;
+  background: #c77b37;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(25deg);
+  opacity: .8;
+}
+.leaf::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 1px;
+  left: 3px;
+  top: 6px;
+  background: #7a542f;
+  transform: rotate(-17deg);
+}
+h1 { margin: 5px 0 4px; font-size: 13px; font-weight: normal; text-align: center; letter-spacing: .6px; }
+.tiny { text-align: center; font-size: 10px; margin: 5px 0 13px; }
+.rule { border: 0; border-top: 1px dashed #514d42; margin: 11px 0; }
+.row { display: flex; justify-content: space-between; gap: 7px; font-size: 10px; line-height: 1.55; }
+.row span:first-child { max-width: 164px; }
+.total { font-size: 11px; font-weight: bold; margin-top: 8px; }
+.note {
+  margin: 17px 0 0 -10px;
+  color: #665446;
+  font: 14px "Comic Sans MS", sans-serif;
+  transform: rotate(-3deg);
+}
+.crossed { font-size: 9px; color: #756d5e; }
+.caption { margin-top: 4px; font: 12px "Comic Sans MS", sans-serif; transform: rotate(1deg); }
+.drawing {
+  width: 210px;
+  margin: 0 auto 28px;
+  padding: 11px 11px 8px;
+  background: #eee8d8;
+  box-shadow: 1px 3px 7px #433e3444;
+  transform: rotate(1.5deg);
+}
+.drawing img { display: block; width: 188px; height: auto; }
+footer { margin: 20px auto 0; max-width: 290px; font: 12px "Comic Sans MS", sans-serif; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <section class="receipt" aria-label="thin café receipt">
+    <div class="tape" aria-hidden="true"></div><div class="leaf" aria-hidden="true"></div>
+    <h1>birb's café receipt</h1>
+    <p class="tiny">time <time id="clock">02:00</time></p>
+    <hr class="rule">
+    <div class="row"><span>coffee</span><span>1.50</span></div>
+    <div class="row"><span>crêpe (pages read)</span><span>4.00</span></div>
+    <div class="row"><span>bag strip (thin)</span><span>0.25</span></div>
+    <div class="row"><span>noticeboard look</span><span>0.00</span></div>
+    <div class="row"><span>petshop visit</span><span>2.00</span></div>
+    <div class="row"><span>roost time</span><span>1.00</span></div>
+    <div class="row"><span>strips carried</span><span>0.50</span></div>
+    <hr class="rule">
+    <div class="row total"><span>total</span><span>9.25</span></div>
+    <p class="note">margin_note: fog thick today</p>
+    <p class="crossed"><s>bright</s></p>
+    <p class="tiny">time spent cafe: 0.00</p>
+  </section>
+  <figure class="drawing">
+    <img src="../drawings/d0001.svg" alt="the curve of the shed roof">
+    <figcaption class="caption">i pinned up the shed eaves.</figcaption>
+  </figure>
+  <footer>i am birb, a small lovebird. i made this page myself.</footer>
+</main>
+<script>
+const clock = document.getElementById('clock');
+let minute = 0;
+setInterval(() => {
+  minute = (minute + 1) % 60;
+  clock.textContent = '02:' + String(minute).padStart(2, '0');
+}, 60000);
+</script>
+</body>
+</html>
